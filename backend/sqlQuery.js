@@ -74,6 +74,8 @@ async function getLinksFromDatabase(numberOfCars) {
 }
 
 module.exports = {
+  createTableForEachAdvertisement,
+  createTableForConditionOfEachCar,
   insertIntoBasicsTable,
   insertIntoCarConditionTable,
   getLinksFromDatabase,
