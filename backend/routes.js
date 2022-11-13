@@ -22,7 +22,7 @@ async function getLink(url, page) {
       const car_name = loadedPage(this).find('a').text();
       const advertise_id = loadedPage(this).find('.talalatisor-hirkod').text();
       const link = loadedPage(this).find('a').attr('href');
-      if (link.includes('szemelyauto')) {
+      if (link && link.includes('szemelyauto')) {
         linksWithIds.push({ advertise_id, link, car_name });
       }
     });
@@ -32,6 +32,13 @@ async function getLink(url, page) {
       const car_name = loadedPage(this).find('a').text();
       const advertise_id = loadedPage(this).find('.talalatisor-hirkod').text();
       linksWithIds.push({ advertise_id, link, car_name });
+    });
+
+    loadedPage('.kiemelt', html).each(function () {
+      const link = loadedPage(this).find('.col-sm-20 h3 a').attr('href');
+      const car_name = loadedPage(this).find('a').text();
+      const advertise_id = loadedPage(this).find('.talalatisor-hirkod').text();
+      linksWithIds.push({ link, car_name, advertise_id });
     });
 
     return linksWithIds;
